@@ -2,423 +2,514 @@
 
 using namespace std;
 
+class Ahorcado{
+    private:
+        string cabeza;
+        string manoIzq;
+        string manoDer;
+        string tronco;
+        string pieIqz;
+        string pieDer;
+        bool continuar;
+        int contador = 0;
+
+    public:
+        Ahorcado(){
+            continuar = false;
+            contador=0;
+        }
+        void dibujarCabeza(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            contador++;
+
+        }
+        void dibujarManoIzq(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            cout<<"        //"<<endl;
+            cout<<"       //"<<endl;
+            cout<<"      //"<<endl;
+            contador++;
+        }
+        void dibujarManoDer(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            cout<<"        //    \\\\ "<<endl;
+            cout<<"       //      \\\\ "<<endl;
+            cout<<"      //        \\\\ "<<endl;
+            contador++;
+        }
+        void dibujarTronco(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            cout<<"        // || \\\\ "<<endl;
+            cout<<"       //  ||  \\\\ "<<endl;
+            cout<<"      //   ||   \\\\ "<<endl;
+            cout<<"           ||"<<endl;
+            contador++;
+        }
+        void dibujarPieIzq(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            cout<<"        // || \\\\ "<<endl;
+            cout<<"       //  ||  \\\\ "<<endl;
+            cout<<"      //   ||   \\\\ "<<endl;
+            cout<<"          |  |"<<endl;
+            cout<<"         //"<<endl;
+            cout<<"        //"<<endl;
+            cout<<"       //"<<endl;
+            cout<<"      //"<<endl;
+            contador++;
+        }
+        void dibujarPieDer(){
+            cout<<"          ***"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"         *   *"<<endl;
+            cout<<"          ***"<<endl;
+            cout<<"        // || \\\\ "<<endl;
+            cout<<"       //  ||  \\\\ "<<endl;
+            cout<<"      //   ||   \\\\"<<endl;
+            cout<<"          |  |"<<endl;
+            cout<<"         //  \\\\ "<<endl;
+            cout<<"        //    \\\\ "<<endl;
+            cout<<"       //      \\\\ "<<endl;
+            cout<<"      //        \\\\ "<<endl;
+            contador++;
+        }
+        void dibujar(){
+            switch (contador) {
+                case 0:{dibujarCabeza();break;}
+                case 1:{dibujarManoIzq();break;}
+                case 2:{dibujarManoDer();break;}
+                case 3:{dibujarTronco();break;}
+                case 4:{dibujarPieIzq();break;}
+                case 5:{dibujarPieDer();break;}
+                default:break;
+            }
+        }
+        void looser(){
+            if(contador==6){
+                cout<<"¡PERDISTE!, tienes 6 respuestas malas."<<endl;
+                continuar=false;
+                exit(1);
+            }
+        }
+        void winner(){
+            cout<<"¡GANASTE!"<<endl;
+        }
+        bool getContinuar(){
+            return continuar;
+        }
+        int getContador(){
+            return contador;
+        }
+
+};
+
 int main()
 
 {
-/*string figura0=''
-        +---+
-        |    |
-             |
-             |
-             |
-             |
-      ========='';
-cout<<figura0<<endl;
-
-        +---+
-        |   |
-        O   |
-        |   |
-            |
-            |
-      =========''','''
-        +---+
-        |   |
-        O   |
-       /|\  |
-            |
-            |
-      =========''','''
-        +---+
-        |   |
-        O   |
-       /|\  |
-       / \  |
-            |
-      =========''']
-                */
     {
       cout<<"BIENVENIDO A ¿QUIEN QUIERE SER MILLONARIO?, VERSION AHORCADO"<<endl;
       cout<<"el juego consiste en una serie de preguntas de seleccion multiple,"<<endl;
       cout<<"por cada error, se va formando la figura del ahorcado, "<<endl;
-      cout<<  "solo se permiten seis(6) equivocaciones"<<endl;
+      cout<<  "solo se permiten seis(6) equivocaciones, \nNOTA: Responde A,B,C o D, de lo contrario será tomada como error"<<endl;
 
     }
-    int error=0;
-    string respuesta1;
+    Ahorcado ahorcado= Ahorcado();
+    int respuestas=0;
+    string respuesta;
     string res1="c";
     cout<<"cuanto es 2+2"<<endl;
     cout<<"A: 5"<<endl;
     cout<<"B: 7"<<endl;
     cout<<"C: 4"<<endl;
     cout<<"D: todas las anteriores"<<endl;
-    cin>>respuesta1;
+    cin>>respuesta;
 
-    if (respuesta1==res1){
+    if (respuesta==res1){
             cout<<"respuesta correcta"<<endl;
-
+            respuestas++;
     }
     else {
             cout<<"incorrecta, la respuesta es la: C /n "<<endl;
-            error++;
-           /* cout<<"  +---+"<<endl;
-            cout<<" |    |"<<endl;
-            cout<<" O    |"<<endl;
-            cout<<" |    |"<<endl;
-            cout<<"      |"<<endl;
-            cout<<"      |"<<endl;
-          cout<<"========="<<endl;
-*/
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
 
     string res2="a";
-    string respuesta2;
     cout<<"cuanto es 7*7?"<<endl;
     cout<<"A: 49"<<endl;
     cout<<"B: 0"<<endl;
     cout<<"C: 43"<<endl;
     cout<<"D: ninguna de las anteriores "<<endl;
-    cin>>respuesta2;
-
-    if (respuesta2==res2){
+    cin>>respuesta;
+    if (respuesta==res2){
             cout<<"respuesta correcta"<<endl;
-
+            respuestas++;
     }
     else {
             cout<<"Incorrecta, la respuesta es la: A "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
+
      }
     string res3="c";
-    string respuesta3;
     cout<<"cuanto equivale un kilogramo?"<<endl;
     cout<<"A: 500 L"<<endl;
     cout<<"B: 400 M"<<endl;
     cout<<"C: 1000 Gr"<<endl;
     cout<<"D: todas las anteriores"<<endl;
-    cin>>respuesta3;
+    cin>>respuesta;
 
-    if (respuesta3==res3){
+    if (respuesta==res3){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
 
     }
     string res4="d";
-    string respuesta4;
     cout<<"cuales son los colores primarios?"<<endl;
     cout<<"A: amarillo, verde, violeta"<<endl;
     cout<<"B: azul, verde, rojo"<<endl;
     cout<<"C: gris, blanco, cafe"<<endl;
     cout<<"D: rojo, amarillo, azul"<<endl;
-    cin>>respuesta3;
+    cin>>respuesta;
 
-    if (respuesta4==res4){
+    if (respuesta==res4){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: D "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res5="c";
-    string respuesta5;
     cout<<"Quien pinto la Mona Liza?"<<endl;
     cout<<"A: leonardo Dicaprio"<<endl;
     cout<<"B: Jorge luis Borgues"<<endl;
     cout<<"C: Leonardo Da'Vinci "<<endl;
     cout<<"D: ninguna de las anteriores"<<endl;
-    cin>>respuesta5;
+    cin>>respuesta;
 
-    if (respuesta5==res5){
+    if (respuesta==res5){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res6="b";
-    string respuesta6;
     cout<<"cuantos paramos tiene Colombia?"<<endl;
     cout<<"A: 50"<<endl;
     cout<<"B: 37"<<endl;
     cout<<"C: 42"<<endl;
     cout<<"D: 34"<<endl;
-    cin>>respuesta6;
+    cin>>respuesta;
 
-    if (respuesta6==res6){
+    if (respuesta==res6){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta;  la respuesta es la: B "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res7="a";
-    string respuesta7;
     cout<<"En que año fue la avalancha de Armero?"<<endl;
     cout<<"A: 1991"<<endl;
     cout<<"B: 1989"<<endl;
     cout<<"C: 1990 "<<endl;
     cout<<"D: 1992 "<<endl;
-    cin>>respuesta7;
+    cin>>respuesta;
 
-    if (respuesta7==res7){
+    if (respuesta==res7){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta;  la respuesta es la: A "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res8="c";
-    string respuesta8;
     cout<<"cuantos paises tiene latinoamerica?"<<endl;
     cout<<"A: 19"<<endl;
     cout<<"B: 17"<<endl;
     cout<<"C: 21"<<endl;
     cout<<"D: ninguna de las anteriores"<<endl;
-    cin>>respuesta8;
+    cin>>respuesta;
 
-    if (respuesta8==res8){
+    if (respuesta==res8){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res9="b";
-    string respuesta9;
     cout<<"Cual es el elemento numero 57 de la tabla periodica?"<<endl;
     cout<<"A: aluminio"<<endl;
     cout<<"B: lantano"<<endl;
     cout<<"C: oro"<<endl;
     cout<<"D: azufre"<<endl;
-    cin>>respuesta9;
+    cin>>respuesta;
 
-    if (respuesta9==res9){
+    if (respuesta==res9){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: B "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res10="c";
-    string respuesta10;
     cout<<"En que estado de australia se encuentra el ornitorrinco?"<<endl;
     cout<<"A: nueva Gales del sur"<<endl;
     cout<<"B: Victoria"<<endl;
     cout<<"C: Tasmania"<<endl;
     cout<<"D: Queensland"<<endl;
-    cin>>respuesta10;
+    cin>>respuesta;
 
-    if (respuesta10==res10){
+    if (respuesta==res10){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res11="d";
-    string respuesta11;
     cout<<"A que religion pertenece la filosofia Zen??"<<endl;
     cout<<"A: Catolicismo"<<endl;
     cout<<"B: Judaismo"<<endl;
     cout<<"C: Ateismo"<<endl;
     cout<<"D:Budismo "<<endl;
-    cin>>respuesta11;
+    cin>>respuesta;
 
-    if (respuesta11==res11){
+    if (respuesta==res11){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: D "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
 
     string res12="c";
-    string respuesta12;
     cout<<"Cuantos mares tiene la peninsula Balcanica?"<<endl;
     cout<<"A: 2"<<endl;
     cout<<"B: 7"<<endl;
     cout<<"C: 3"<<endl;
     cout<<"D: 4"<<endl;
-    cin>>respuesta12;
+    cin>>respuesta;
 
-    if (respuesta12==res12){
+    if (respuesta==res12){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
 
     string res13="a";
-    string respuesta13;
     cout<<"Que isla lleva el nombre de un famoso navegante holandes?"<<endl;
     cout<<"A: Tasmania"<<endl;
     cout<<"B: Sumatra"<<endl;
     cout<<"C: Madagascar"<<endl;
     cout<<"D: Hawai"<<endl;
-    cin>>respuesta13;
+    cin>>respuesta;
 
-    if (respuesta13==res13){
+    if (respuesta==res13){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"Incorrecta,  la respuesta es la: A "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res14="d";
-    string respuesta14;
     cout<<"Los astronomos lo definen como 'la mas baja culminacion del sol'.¿ Que termino es?"<<endl;
     cout<<"A: Verano"<<endl;
     cout<<"B: Eclipse solar"<<endl;
     cout<<"C: Plenilunio"<<endl;
     cout<<"D: Medianoche "<<endl;
-    cin>>respuesta14;
+    cin>>respuesta;
 
-    if (respuesta14==res14){
+    if (respuesta==res14){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<" incorrecta, la respuesta es la D "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
 
     string res15="d";
-    string respuesta15;
     cout<<"Como llamamos alos abejorros que no construyen nidos y recolectan nectar?"<<endl;
     cout<<"A: Abejorros cuco"<<endl;
     cout<<"B: Abejorros parasito"<<endl;
     cout<<"C: Abejorros perezosos"<<endl;
     cout<<"D: Ninguna de las anteriores "<<endl;
-    cin>>respuesta15;
+    cin>>respuesta;
 
-    if (respuesta15==res15){
+    if (respuesta==res15){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
-            cout<<"incorrecta,la respuesta correcta es la A  "<<endl;
-            error++;
+            cout<<"incorrecta,la respuesta correcta es la D  "<<endl;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
 
     string res16="c";
-    string respuesta16;
     cout<<" La palabra Fougeres, lo que significa copa, deriva su nombre de..."<<endl;
     cout<<"A: Una planta"<<endl;
     cout<<"B: Una piedra"<<endl;
     cout<<"C: Una ciudad"<<endl;
     cout<<"D: Un vidrio"<<endl;
-    cin>>respuesta16;
+    cin>>respuesta;
 
-    if (respuesta16==res16){
+    if (respuesta==res16){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"incorrecta, la respuesta es la C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res17="a";
-    string respuesta17;
     cout<<"Cual de las siguientes no es una de las carreras de caballos de triple corona americana "<<endl;
     cout<<"A: Arlington Million"<<endl;
     cout<<"B: Belmont stakes"<<endl;
     cout<<"C: Derby de Kentucky"<<endl;
     cout<<"D: ninguna de las anteriores"<<endl;
-    cin>>respuesta17;
+    cin>>respuesta;
 
-    if (respuesta17==res17){
+    if (respuesta==res17){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"incorrecta, la respuesta es la A "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res18="c";
-    string respuesta18;
     cout<<" cual es el ave voladora mas pesada del mundo? "<<endl;
     cout<<"A: El condor"<<endl;
     cout<<"B: El avestrus"<<endl;
     cout<<"C: avutarda kori"<<endl;
     cout<<"D: El pavo real"<<endl;
-    cin>>respuesta18;
+    cin>>respuesta;
 
-    if (respuesta18==res18){
+    if (respuesta==res18){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"incorrecta, la respuesta es la C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res19="b";
-    string respuesta19;
     cout<<" En que isla esta situado el Teide? "<<endl;
     cout<<"A: San andres y Providencia"<<endl;
     cout<<"B: Islas canarias"<<endl;
     cout<<"C: Isla margarita"<<endl;
     cout<<"D: Isla la Gaiola"<<endl;
-    cin>>respuesta19;
+    cin>>respuesta;
 
-    if (respuesta19==res19){
+    if (respuesta==res19){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"incorrecta, la respuesta es la B "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
 
     string res20="c";
-    string respuesta20;
     cout<<" En que pais se encuentra la isla de las serpientes? "<<endl;
     cout<<"A: Venezuela"<<endl;
     cout<<"B: Brazil"<<endl;
     cout<<"C: Panama"<<endl;
     cout<<"D: Colombia"<<endl;
-    cin>>respuesta20;
+    cin>>respuesta;
 
-    if (respuesta20==res20){
+    if (respuesta==res20){
             cout<<"respuesta correcta"<<endl;
+            respuestas++;
 
     }
     else {
             cout<<"incorrecta, la respuesta es la C "<<endl;
-            error++;
+            ahorcado.dibujar();
+            ahorcado.looser();
     }
-
+    cout<<"!GANASTE";
 }
-
-
-
-   
